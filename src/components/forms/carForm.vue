@@ -7,35 +7,66 @@
         <p>Replace me for input fields</p>
         <!-- LicensePlate -->
         <div class="form-floating mb-3">
+          <input type="text" class="form-control" id="LicensePlate" placeholder="Nummerplaat" />
+          <label for="LicensePlate">Nummerplaat</label>
+        </div>
+        <!-- End LicensePlate -->
+
+        <!-- Zipcode -->
+        <div class="form-floating mb-3">
+          <input type="text" class="form-control" id="Postcode" placeholder="Postcode" />
+          <label for="Postcode">Postcode</label>
+        </div>
+        <!-- End Zipcode -->
+
+        <!-- Housenumber -->
+        <div class="form-floating mb-3">
+          <input type="text" class="form-control" id="Huisnummer" placeholder="Huisnummer" />
+          <label for="Huisnummer">Huisnummer</label>
+        </div>
+        <!-- End Housenumber -->
+
+        <!-- Housenumber addition -->
+        <div class="form-floating mb-3">
           <input
             type="text"
             class="form-control"
-            id="LicensePlate"
-            placeholder="name@example.com"
+            id="Toevoeging_huisnummer"
+            placeholder="Toevoeging huisnummer"
           />
-          <label for="LicensePlate">Email address</label>
+          <label for="Toevoeging_huisnummer">Toevoeging huisnummer</label>
         </div>
-        <div class="form-floating mb-3">
-          <input
-            type="password"
-            class="form-control"
-            id="floatingPassword"
-            placeholder="Password"
-          />
-          <label for="floatingPassword">Password</label>
-        </div>
-
-        <!-- Zipcode -->
-
-        <!-- Housenumber -->
-
-        <!-- Housenumber addition -->
+        <!-- End Housenumber addition -->
 
         <!-- birthdate -->
+        <div class="form-floating mb-3">
+          <input
+            type="date"
+            class="form-control"
+            id="geboortedatum"
+            placeholder="Toevoeging huisnummer"
+          />
+          <label for="geboortedatum">Geboortedatum</label>
+        </div>
+        <!-- End birthdate -->
 
         <!-- ClaimFree years -->
+        <div class="form-floating mb-3">
+          <input
+            type="date"
+            class="form-control"
+            id="Claimvrije_jaren"
+            placeholder="Claimvrije jaren"
+          />
+          <label for="Claimvrije_jaren">Claimvrije jaren</label>
+        </div>
+        <!-- End ClaimFree years -->
 
         <!-- Kilometrage -->
+        <div class="form-floating mb-3">
+          <input type="text" class="form-control" id="Kilometrage" placeholder="Claimvrije jaren" />
+          <label for="Kilometrage">Kilometerstand</label>
+        </div>
 
         <div class="btn" @click="onSubmit">Vergelijken</div>
       </form>
@@ -61,7 +92,7 @@ export default class CarForm extends Vue {
 
 <style scoped>
 .vd-form {
-  width: 330px;
+  width: 70%;
 }
 
 @media only screen and (max-width: 768px) {
