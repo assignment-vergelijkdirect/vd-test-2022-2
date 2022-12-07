@@ -7,22 +7,43 @@
         <p>Replace me for input fields</p>
         <!-- LicensePlate -->
         <div class="form-floating mb-3">
-          <input type="text" class="form-control" id="LicensePlate" placeholder="Nummerplaat" />
+          <input
+            type="text"
+            class="form-control"
+            id="LicensePlate"
+            placeholder="Nummerplaat"
+            v-model="carDetails.licenseplate"
+          />
+          {{ carDetails.licenseplate }}
           <label for="LicensePlate">Nummerplaat</label>
         </div>
         <!-- End LicensePlate -->
 
         <!-- Zipcode -->
         <div class="form-floating mb-3">
-          <input type="text" class="form-control" id="Postcode" placeholder="Postcode" />
+          <input
+            type="text"
+            class="form-control"
+            id="Zipcode"
+            placeholder="Postcode"
+            v-model="carDetails.zipcode"
+          />
+          {{ carDetails.zipcode }}
           <label for="Postcode">Postcode</label>
         </div>
         <!-- End Zipcode -->
 
         <!-- Housenumber -->
         <div class="form-floating mb-3">
-          <input type="text" class="form-control" id="Huisnummer" placeholder="Huisnummer" />
-          <label for="Huisnummer">Huisnummer</label>
+          <input
+            type="text"
+            class="form-control"
+            id="Housenumber"
+            placeholder="Huisnummer"
+            v-model="carDetails.housenumber"
+          />
+          {{ carDetails.housenumber }}
+          <label for="Housenumber">Huisnummer</label>
         </div>
         <!-- End Housenumber -->
 
@@ -31,10 +52,12 @@
           <input
             type="text"
             class="form-control"
-            id="Toevoeging_huisnummer"
+            id="HouseAdd"
             placeholder="Toevoeging huisnummer"
+            v-model="carDetails.houseAdd"
           />
-          <label for="Toevoeging_huisnummer">Toevoeging huisnummer</label>
+          {{ carDetails.houseAdd }}
+          <label for="HouseAdd">Toevoeging huisnummer</label>
         </div>
         <!-- End Housenumber addition -->
 
@@ -43,10 +66,12 @@
           <input
             type="date"
             class="form-control"
-            id="geboortedatum"
+            id="birthdate"
             placeholder="Toevoeging huisnummer"
+            v-model="carDetails.birthdate"
           />
-          <label for="geboortedatum">Geboortedatum</label>
+          {{ carDetails.birthdate }}
+          <label for="birthdate">Geboortedatum</label>
         </div>
         <!-- End birthdate -->
 
@@ -55,26 +80,36 @@
           <input
             type="date"
             class="form-control"
-            id="Claimvrije_jaren"
+            id="ClaimFree"
             placeholder="Claimvrije jaren"
+            v-model="carDetails.claimFree"
           />
-          <label for="Claimvrije_jaren">Claimvrije jaren</label>
+          {{ carDetails.claimFree }}
+          <label for="ClaimFree">Claimvrije jaren</label>
         </div>
         <!-- End ClaimFree years -->
 
         <!-- Kilometrage -->
         <div class="form-floating mb-3">
-          <input type="text" class="form-control" id="Kilometrage" placeholder="Claimvrije jaren" />
+          <input
+            type="text"
+            class="form-control"
+            id="Kilometrage"
+            placeholder="Kilometerstand"
+            v-model="carDetails.kilometrage"
+          />
+          {{ carDetails.kilometrage }}
           <label for="Kilometrage">Kilometerstand</label>
         </div>
 
-        <div class="btn" @click="onSubmit">Vergelijken</div>
+        <button type="button" class="btn" @click="onSubmit">Vergelijken</button>
       </form>
     </template>
   </simple-card>
 </template>
 
 <script lang="ts">
+import CarDetails from "@/models/carDetails.model";
 import { Options, Vue } from "vue-class-component";
 import SimpleCard from "./simpleCard.vue";
 
@@ -84,9 +119,32 @@ import SimpleCard from "./simpleCard.vue";
   },
 })
 export default class CarForm extends Vue {
-  onSubmit(): void {
-    console.log("Button is clicked");
+  public carDetails!: CarDetails;
+
+  created(): void {
+    console.log("Component car form created");
+    this.carDetails = new CarDetails();
+    console.log(this.carDetails);
   }
+
+  onSubmit(): void {
+    console.log("form submited");
+    console.log(this.carDetails);
+  }
+
+  // validImput(): void {
+  //   const trigger = this.carDetails.licenseplate;
+  //   const regexp = new RegExp("^[A-Z0-9]+$");
+  //   const test = regexp.test(trigger);
+  //   if (test) {
+  //     this.carDetails.licenseplate = trigger.toUpperCase();
+  //     console.log(this.carDetails.licenseplate);
+  //   } else {
+  //     this.carDetails.licenseplate = "Erro";
+  //     console.log(this.carDetails.licenseplate);
+  //   }
+  //   console.log(test + ""); // will display true
+  // }
 }
 </script>
 
