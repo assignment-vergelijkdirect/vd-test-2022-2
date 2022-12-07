@@ -16,7 +16,7 @@
             name="LicensePlate"
             :rules="validateLicence"
           />
-          <ErrorMessage name="LicensePlate" />
+          <ErrorMessage class="alert alert-warning py-0 my-5" role="alert" name="LicensePlate" />
           <!-- {{ carDetails.licenseplate }} -->
           <label for="LicensePlate">Nummerplaat</label>
         </div>
@@ -31,9 +31,10 @@
             placeholder="Postcode"
             v-model="carDetails.zipcode"
             name="Zipcode"
+            :rules="validateZipCode"
           />
-          <ErrorMessage name="Zipcode" />
-          {{ carDetails.zipcode }}
+          <ErrorMessage class="alert alert-warning py-0 my-5" role="alert" name="Zipcode" />
+
           <label for="Postcode">Postcode</label>
         </div>
         <!-- End Zipcode -->
@@ -47,9 +48,10 @@
             placeholder="Huisnummer"
             v-model="carDetails.housenumber"
             name="Housenumber"
+            :rules="validateHouseNumber"
           />
-          <ErrorMessage name="Housenumber" />
-          {{ carDetails.housenumber }}
+          <ErrorMessage class="alert alert-warning py-0 my-5" role="alert" name="Housenumber" />
+
           <label for="Housenumber">Huisnummer</label>
         </div>
         <!-- End Housenumber -->
@@ -63,9 +65,10 @@
             placeholder="Toevoeging huisnummer"
             v-model="carDetails.houseAdd"
             name="HouseAdd"
+            :rules="validateHouseAdd"
           />
-          <ErrorMessage name="HouseAdd" />
-          {{ carDetails.houseAdd }}
+          <ErrorMessage class="alert alert-warning py-0 my-5" role="alert" name="HouseAdd" />
+
           <label for="HouseAdd">Toevoeging huisnummer</label>
         </div>
         <!-- End Housenumber addition -->
@@ -80,8 +83,8 @@
             v-model="carDetails.birthdate"
             name="birthdate"
           />
-          <ErrorMessage name="birthdate" />
-          {{ carDetails.birthdate }}
+          <ErrorMessage class="alert alert-warning py-0 my-5" role="alert" name="birthdate" />
+
           <label for="birthdate">Geboortedatum</label>
         </div>
         <!-- End birthdate -->
@@ -96,8 +99,8 @@
             v-model="carDetails.claimFree"
             name="ClaimFree"
           />
-          <ErrorMessage name="ClaimFree" />
-          {{ carDetails.claimFree }}
+          <ErrorMessage class="alert alert-warning py-0 my-5" role="alert" name="ClaimFree" />
+
           <label for="ClaimFree">Claimvrije jaren</label>
         </div>
         <!-- End ClaimFree years -->
@@ -112,8 +115,8 @@
             v-model="carDetails.kilometrage"
             name="Kilometrage"
           />
-          <ErrorMessage name="Kilometrage" />
-          {{ carDetails.kilometrage }}
+          <ErrorMessage class="alert alert-warning py-0 my-5" role="alert" name="Kilometrage" />
+
           <label for="Kilometrage">Kilometerstand</label>
         </div>
 
@@ -165,19 +168,47 @@ export default class CarForm extends Vue {
     return true;
   }
 
-  // validImput(): void {
-  //   const trigger = this.carDetails.licenseplate;
-  //   const regexp = new RegExp("^[A-Z0-9]+$");
-  //   const test = regexp.test(trigger);
-  //   if (test) {
-  //     this.carDetails.licenseplate = trigger.toUpperCase();
-  //     console.log(this.carDetails.licenseplate);
-  //   } else {
-  //     this.carDetails.licenseplate = "Erro";
-  //     console.log(this.carDetails.licenseplate);
-  //   }
-  //   console.log(test + ""); // will display true
-  // }
+  validateZipCode(value: string): any {
+    // if the field is empty
+    if (!value) {
+      return "This field is required";
+    }
+    // if the field is not a valid email
+    const regex = /^[A-Z][A-Z][A-Z][A-Z]\d\d*$/;
+    if (!regex.test(value)) {
+      return "This field must be a valid format";
+    }
+    // All is good
+    return true;
+  }
+
+  validateHouseNumber(value: string): any {
+    // if the field is empty
+    if (!value) {
+      return "This field is required";
+    }
+    // if the field is not a valid email
+    const regex = /^[0-9]*$/;
+    if (!regex.test(value)) {
+      return "This field must be a valid format";
+    }
+    // All is good
+    return true;
+  }
+
+  validateHouseAdd(value: string): any {
+    // if the field is empty
+    if (!value) {
+      return "This field is required";
+    }
+    // if the field is not a valid email
+    const regex = /^[A-Z0-9]*$/;
+    if (!regex.test(value)) {
+      return "This field must be a valid format";
+    }
+    // All is good
+    return true;
+  }
 }
 </script>
 
