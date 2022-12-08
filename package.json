@@ -12,6 +12,7 @@
     "@popperjs/core": "^2.11.6",
     "bootstrap": "^5.2.3",
     "core-js": "^3.6.5",
+    "vee-validate": "^4.7.3",
     "vue": "^3.0.0",
     "vue-class-component": "^8.0.0-0"
   },
