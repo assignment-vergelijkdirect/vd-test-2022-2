@@ -7,10 +7,6 @@ type TypeGetCars = {
 };
 
 export default class HttpRequest {
-  get(licence: string): void {
-    console.log(licence);
-  }
-
   async getCars(licence: string): Promise<unknown> {
     try {
       const licenceCar = licence;
@@ -25,7 +21,7 @@ export default class HttpRequest {
         }
       );
 
-      console.log(JSON.stringify(data, null, 4));
+      // console.log(JSON.stringify(data, null, 4));
 
       // 👇️ "response status is: 200"
       console.log("response status is: ", status);

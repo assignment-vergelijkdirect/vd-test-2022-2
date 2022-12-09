@@ -146,11 +146,6 @@ export default class CarForm extends Vue {
 
   public httpRequest: HttpRequest = new HttpRequest();
 
-  public CarInterface!: {
-    key: number;
-    value: string;
-  };
-
   created(): void {
     console.log("Component car form created");
     this.carDetails = new CarDetails();
@@ -160,24 +155,24 @@ export default class CarForm extends Vue {
 
   onSubmit(): void {
     console.log("form submited :");
-    console.log(this.carDetails);
+    // console.log(this.carDetails);
     const licencePlate: any = this.carDetails.licenseplate;
-    console.log("Sending requisition...");
-    let results = this.httpRequest.getCars(licencePlate);
-    console.log(results);
-    // console.log("Tamanho");
-    // console.log(results.length);
+    console.log(`Sending requisition to ${licencePlate}`);
 
-    // if (results.length === 1) {
-    //   console.log("Entrei no if");
-    //   // eslint-disable-next-line no-plusplus
-    //   for (let i = 0; i < results.length; i++) {
-    //     console.log(results[i]);
-    //   }
-    // } else {
-    //   console.log("Entrei no Else");
-    //   console.log(results);
-    // }
+    this.httpRequest.getCars(licencePlate).then((data) => {
+      //type cast to Array<any>
+      let castToArray = <Array<any>>data;
+      if (castToArray.length === 1 && castToArray != null) {
+        //fetch first item of the array
+        const response = castToArray[0];
+        this.carDetails.merk = response.merk;
+        this.carDetails.datumEersteToelating = response.datum_eerste_toelating;
+      } else {
+        alert("Invalid Licence Plate");
+      }
+
+      console.log(this.carDetails);
+    });
   }
 
   validateLicence(value: string): any {
