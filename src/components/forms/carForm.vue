@@ -130,6 +130,7 @@
 import { Form, Field, ErrorMessage } from "vee-validate";
 import CarDetails from "@/models/carDetails.model";
 import { Options, Vue } from "vue-class-component";
+import HttpRequest from "@/plugin/services/httpRequest";
 import SimpleCard from "./simpleCard.vue";
 
 @Options({
@@ -143,15 +144,40 @@ import SimpleCard from "./simpleCard.vue";
 export default class CarForm extends Vue {
   public carDetails!: CarDetails;
 
+  public httpRequest: HttpRequest = new HttpRequest();
+
+  public CarInterface!: {
+    key: number;
+    value: string;
+  };
+
   created(): void {
     console.log("Component car form created");
     this.carDetails = new CarDetails();
     console.log(this.carDetails);
+    // this.httpRequest = new HttpRequest();
   }
 
   onSubmit(): void {
-    console.log("form submited");
+    console.log("form submited :");
     console.log(this.carDetails);
+    const licencePlate: any = this.carDetails.licenseplate;
+    console.log("Sending requisition...");
+    let results = this.httpRequest.getCars(licencePlate);
+    console.log(results);
+    // console.log("Tamanho");
+    // console.log(results.length);
+
+    // if (results.length === 1) {
+    //   console.log("Entrei no if");
+    //   // eslint-disable-next-line no-plusplus
+    //   for (let i = 0; i < results.length; i++) {
+    //     console.log(results[i]);
+    //   }
+    // } else {
+    //   console.log("Entrei no Else");
+    //   console.log(results);
+    // }
   }
 
   validateLicence(value: string): any {
