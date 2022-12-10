@@ -6,71 +6,19 @@
       <Form @submit="onSubmit">
         <p>Replace me for Field fields</p>
         <!-- LicensePlate -->
-        <div class="form-floating mb-3">
-          <Field
-            type="text"
-            class="form-control"
-            id="LicensePlate"
-            placeholder="Nummerplaat"
-            v-model="carDetails.licenseplate"
-            name="LicensePlate"
-            :rules="validateLicence"
-          />
-          <ErrorMessage class="alert alert-warning py-0 my-5" role="alert" name="LicensePlate" />
-          <!-- {{ carDetails.licenseplate }} -->
-          <label for="LicensePlate">Nummerplaat</label>
-        </div>
+        <input-licence v-model="carDetails.licenseplate" />
         <!-- End LicensePlate -->
 
         <!-- Zipcode -->
-        <div class="form-floating mb-3">
-          <Field
-            type="text"
-            class="form-control"
-            id="Zipcode"
-            placeholder="Postcode"
-            v-model="carDetails.zipcode"
-            name="Zipcode"
-            :rules="validateZipCode"
-          />
-          <ErrorMessage class="alert alert-warning py-0 my-5" role="alert" name="Zipcode" />
-
-          <label for="Postcode">Postcode</label>
-        </div>
+        <input-post-code v-model="carDetails.zipcode" />
         <!-- End Zipcode -->
 
         <!-- Housenumber -->
-        <div class="form-floating mb-3">
-          <Field
-            type="text"
-            class="form-control"
-            id="Housenumber"
-            placeholder="Huisnummer"
-            v-model="carDetails.housenumber"
-            name="Housenumber"
-            :rules="validateHouseNumber"
-          />
-          <ErrorMessage class="alert alert-warning py-0 my-5" role="alert" name="Housenumber" />
-
-          <label for="Housenumber">Huisnummer</label>
-        </div>
+        <input-house-number v-model="carDetails.housenumber" />
         <!-- End Housenumber -->
 
         <!-- Housenumber addition -->
-        <div class="form-floating mb-3">
-          <Field
-            type="text"
-            class="form-control"
-            id="HouseAdd"
-            placeholder="Toevoeging huisnummer"
-            v-model="carDetails.houseAdd"
-            name="HouseAdd"
-            :rules="validateHouseAdd"
-          />
-          <ErrorMessage class="alert alert-warning py-0 my-5" role="alert" name="HouseAdd" />
-
-          <label for="HouseAdd">Toevoeging huisnummer</label>
-        </div>
+        <input-house-add v-model="carDetails.houseAdd" />
         <!-- End Housenumber addition -->
 
         <!-- birthdate -->
@@ -132,9 +80,17 @@ import CarDetails from "@/models/carDetails.model";
 import { Options, Vue } from "vue-class-component";
 import HttpRequest from "@/plugin/services/httpRequest";
 import SimpleCard from "./simpleCard.vue";
+import InputLicence from "./cardform/inputLicence.vue";
+import InputPostCode from "./cardform/inputPostCode.vue";
+import InputHouseNumber from "./cardform/inputHouseNumber.vue";
+import InputHouseAdd from "./cardform/inputHouseAdd.vue";
 
 @Options({
   components: {
+    InputLicence,
+    InputPostCode,
+    InputHouseNumber,
+    InputHouseAdd,
     SimpleCard,
     Form,
     Field,
@@ -175,61 +131,61 @@ export default class CarForm extends Vue {
     });
   }
 
-  validateLicence(value: string): any {
-    // if the field is empty
-    if (!value) {
-      return "This field is required";
-    }
-    // if the field is not a valid email
-    const regex = /^[A-Z0-9]*$/;
-    if (!regex.test(value)) {
-      return "This field must be a valid format";
-    }
-    // All is good
-    return true;
-  }
+  // validateLicence(value: string): any {
+  //   // if the field is empty
+  //   if (!value) {
+  //     return "This field is required";
+  //   }
+  //   // if the field is not a valid email
+  //   const regex = /^[A-Z0-9]*$/;
+  //   if (!regex.test(value)) {
+  //     return "This field must be a valid format";
+  //   }
+  //   // All is good
+  //   return true;
+  // }
 
-  validateZipCode(value: string): any {
-    // if the field is empty
-    if (!value) {
-      return "This field is required";
-    }
-    // if the field is not a valid email
-    const regex = /^[A-Z][A-Z][A-Z][A-Z]\d\d*$/;
-    if (!regex.test(value)) {
-      return "This field must be a valid format";
-    }
-    // All is good
-    return true;
-  }
+  // validateZipCode(value: string): any {
+  //   // if the field is empty
+  //   if (!value) {
+  //     return "This field is required";
+  //   }
+  //   // if the field is not a valid email
+  //   const regex = /^[A-Z][A-Z][A-Z][A-Z]\d\d*$/;
+  //   if (!regex.test(value)) {
+  //     return "This field must be a valid format";
+  //   }
+  //   // All is good
+  //   return true;
+  // }
 
-  validateHouseNumber(value: string): any {
-    // if the field is empty
-    if (!value) {
-      return "This field is required";
-    }
-    // if the field is not a valid email
-    const regex = /^[0-9]*$/;
-    if (!regex.test(value)) {
-      return "This field must be a valid format";
-    }
-    // All is good
-    return true;
-  }
+  // validateHouseNumber(value: string): any {
+  //   // if the field is empty
+  //   if (!value) {
+  //     return "This field is required";
+  //   }
+  //   // if the field is not a valid email
+  //   const regex = /^[0-9]*$/;
+  //   if (!regex.test(value)) {
+  //     return "This field must be a valid format";
+  //   }
+  //   // All is good
+  //   return true;
+  // }
 
-  validateHouseAdd(value: string): any {
-    // if the field is empty
-    if (!value) {
-      return "This field is required";
-    }
-    // if the field is not a valid email
-    const regex = /^[A-Z0-9]*$/;
-    if (!regex.test(value)) {
-      return "This field must be a valid format";
-    }
-    // All is good
-    return true;
-  }
+  // validateHouseAdd(value: string): any {
+  //   // if the field is empty
+  //   if (!value) {
+  //     return "This field is required";
+  //   }
+  //   // if the field is not a valid email
+  //   const regex = /^[A-Z0-9]*$/;
+  //   if (!regex.test(value)) {
+  //     return "This field must be a valid format";
+  //   }
+  //   // All is good
+  //   return true;
+  // }
 }
 </script>
 
