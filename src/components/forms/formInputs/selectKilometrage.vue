@@ -1,21 +1,11 @@
 <template>
   <div class="form-floating mb-3">
-    <!-- <Field
-            type="text"
-            class="form-control"
-            id="Kilometrage"
-            placeholder="Kilometerstand"
-            v-model="carDetails.kilometrage"
-            name="Kilometrage"
-          />
-          <ErrorMessage class="alert alert-warning py-0 my-5" role="alert" name="Kilometrage" />
-
-          <label for="Kilometrage">Kilometerstand</label> -->
     <select
       class="form-select"
       id="Kilometrage"
+      name="Kilometrage"
       aria-label="Default select example"
-      @option="$emit('update:modelValue', $event.target.value)"
+      @change="$emit('update:modelValue', $event.target.value)"
     >
       <option :value="1">0 t/m 7500 KM</option>
       <option :value="2" selected>7501 t/m 10000 KM</option>

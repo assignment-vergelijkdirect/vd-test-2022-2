@@ -1,11 +1,11 @@
 <template>
-  <!-- ClaimFree years -->
   <div class="form-floating mb-3">
     <select
       class="form-select"
       id="ClaimFree"
+      name="ClaimFree"
       aria-label="Default select example"
-      @option="$emit('update:modelValue', $event.target.value)"
+      @change="$emit('update:modelValue', $event.target.value)"
     >
       <option :value="1">-5</option>
       <option :value="2">-4</option>
@@ -20,7 +20,6 @@
     </select>
     <label for="ClaimFree">Claimvrije jaren</label>
   </div>
-  <!-- End ClaimFree years -->
 </template>
 
 <script lang="ts">

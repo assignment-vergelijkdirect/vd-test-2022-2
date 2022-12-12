@@ -36,7 +36,7 @@ export default class InputPostCode extends Vue {
       return "This field is required";
     }
     // if the field is not a valid email
-    const regex = /^[A-Z][A-Z][A-Z][A-Z]\d\d*$/;
+    const regex = /^[A-Z0-9]*$/;
     if (!regex.test(value)) {
       return "This field must be a valid format";
     }
