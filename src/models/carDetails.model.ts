@@ -1,15 +1,19 @@
 export default class CarDetails {
-  public licenseplate: string | undefined;
+  licenseplate?: string;
 
-  public zipcode: string | undefined;
+  zipcode?: string;
 
-  public housenumber: string | undefined;
+  housenumber?: string;
 
-  public houseAdd: string | undefined;
+  houseAdd?: string;
 
-  public birthdate: Date | undefined;
+  birthdate?: Date;
 
-  public claimFree: Date | undefined;
+  claimFree?: string;
 
-  public kilometrage: string | undefined;
+  kilometrage?: string;
+
+  merk?: string;
+
+  datumEersteToelating?: string;
 }
