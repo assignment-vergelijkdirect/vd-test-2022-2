@@ -31,7 +31,7 @@ export default class InputHouseNumber extends Vue {
   public houseNumberValue!: string;
 
   created(): void {
-    console.log("Component ImputLicence created");
+    console.log("Component InputHouseNumber created");
   }
 
   validateHouseNumber(value: string): any {

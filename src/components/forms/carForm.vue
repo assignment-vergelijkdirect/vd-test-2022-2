@@ -22,51 +22,16 @@
         <!-- End Housenumber addition -->
 
         <!-- birthdate -->
-        <div class="form-floating mb-3">
-          <Field
-            type="date"
-            class="form-control"
-            id="birthdate"
-            placeholder="Geboortedatum"
-            v-model="carDetails.birthdate"
-            name="birthdate"
-          />
-          <ErrorMessage class="alert alert-warning py-0 my-5" role="alert" name="birthdate" />
-
-          <label for="birthdate">Geboortedatum</label>
-        </div>
+        <input-birth-date v-model="carDetails.birthdate" />
         <!-- End birthdate -->
 
         <!-- ClaimFree years -->
-        <div class="form-floating mb-3">
-          <Field
-            type="date"
-            class="form-control"
-            id="ClaimFree"
-            placeholder="Claimvrije jaren"
-            v-model="carDetails.claimFree"
-            name="ClaimFree"
-          />
-          <ErrorMessage class="alert alert-warning py-0 my-5" role="alert" name="ClaimFree" />
-
-          <label for="ClaimFree">Claimvrije jaren</label>
-        </div>
+        <select-claim-free v-model="carDetails.claimFree" />
         <!-- End ClaimFree years -->
 
         <!-- Kilometrage -->
-        <div class="form-floating mb-3">
-          <Field
-            type="text"
-            class="form-control"
-            id="Kilometrage"
-            placeholder="Kilometerstand"
-            v-model="carDetails.kilometrage"
-            name="Kilometrage"
-          />
-          <ErrorMessage class="alert alert-warning py-0 my-5" role="alert" name="Kilometrage" />
-
-          <label for="Kilometrage">Kilometerstand</label>
-        </div>
+        <select-kilometrage v-model="carDetails.kilometrage" />
+        <!-- Kilometrage -->
 
         <button type="button" class="btn" @click="onSubmit">Vergelijken</button>
       </Form>
@@ -80,10 +45,13 @@ import CarDetails from "@/models/carDetails.model";
 import { Options, Vue } from "vue-class-component";
 import HttpRequest from "@/plugin/services/httpRequest";
 import SimpleCard from "./simpleCard.vue";
-import InputLicence from "./cardform/inputLicence.vue";
-import InputPostCode from "./cardform/inputPostCode.vue";
-import InputHouseNumber from "./cardform/inputHouseNumber.vue";
-import InputHouseAdd from "./cardform/inputHouseAdd.vue";
+import InputLicence from "./formInputs/inputLicence.vue";
+import InputPostCode from "./formInputs/inputPostCode.vue";
+import InputHouseNumber from "./formInputs/inputHouseNumber.vue";
+import InputHouseAdd from "./formInputs/inputHouseAdd.vue";
+import InputBirthDate from "./formInputs/inputBirthDate.vue";
+import SelectClaimFree from "./formInputs/selectClaimFree.vue";
+import SelectKilometrage from "./formInputs/selectKilometrage.vue";
 
 @Options({
   components: {
@@ -91,6 +59,9 @@ import InputHouseAdd from "./cardform/inputHouseAdd.vue";
     InputPostCode,
     InputHouseNumber,
     InputHouseAdd,
+    InputBirthDate,
+    SelectClaimFree,
+    SelectKilometrage,
     SimpleCard,
     Form,
     Field,
@@ -113,7 +84,7 @@ export default class CarForm extends Vue {
     console.log("form submited :");
     // console.log(this.carDetails);
     const licencePlate: any = this.carDetails.licenseplate;
-    console.log(`Sending requisition to ${licencePlate}`);
+    console.log(`Sending requisition to plate: ${licencePlate}`);
 
     this.httpRequest.getCars(licencePlate).then((data) => {
       //type cast to Array<any>
@@ -130,62 +101,6 @@ export default class CarForm extends Vue {
       console.log(this.carDetails);
     });
   }
-
-  // validateLicence(value: string): any {
-  //   // if the field is empty
-  //   if (!value) {
-  //     return "This field is required";
-  //   }
-  //   // if the field is not a valid email
-  //   const regex = /^[A-Z0-9]*$/;
-  //   if (!regex.test(value)) {
-  //     return "This field must be a valid format";
-  //   }
-  //   // All is good
-  //   return true;
-  // }
-
-  // validateZipCode(value: string): any {
-  //   // if the field is empty
-  //   if (!value) {
-  //     return "This field is required";
-  //   }
-  //   // if the field is not a valid email
-  //   const regex = /^[A-Z][A-Z][A-Z][A-Z]\d\d*$/;
-  //   if (!regex.test(value)) {
-  //     return "This field must be a valid format";
-  //   }
-  //   // All is good
-  //   return true;
-  // }
-
-  // validateHouseNumber(value: string): any {
-  //   // if the field is empty
-  //   if (!value) {
-  //     return "This field is required";
-  //   }
-  //   // if the field is not a valid email
-  //   const regex = /^[0-9]*$/;
-  //   if (!regex.test(value)) {
-  //     return "This field must be a valid format";
-  //   }
-  //   // All is good
-  //   return true;
-  // }
-
-  // validateHouseAdd(value: string): any {
-  //   // if the field is empty
-  //   if (!value) {
-  //     return "This field is required";
-  //   }
-  //   // if the field is not a valid email
-  //   const regex = /^[A-Z0-9]*$/;
-  //   if (!regex.test(value)) {
-  //     return "This field must be a valid format";
-  //   }
-  //   // All is good
-  //   return true;
-  // }
 }
 </script>
 

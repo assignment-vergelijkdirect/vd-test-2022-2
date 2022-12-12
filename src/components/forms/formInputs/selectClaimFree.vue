@@ -1,19 +1,26 @@
 <template>
+  <!-- ClaimFree years -->
   <div class="form-floating mb-3">
-    <Field
-      type="text"
-      class="form-control"
-      id="LicensePlate"
-      placeholder="Nummerplaat"
-      name="LicensePlate"
-      :rules="validateLicence"
-      :value="licenselValue"
-      @input="$emit('update:licenselValue', $event.target.value)"
-    />
-    <ErrorMessage class="alert alert-warning py-0 my-5" role="alert" name="LicensePlate" />
-    <label for="LicensePlate">Nummerplaat</label>
+    <select
+      class="form-select"
+      id="ClaimFree"
+      aria-label="Default select example"
+      @option="$emit('update:claimFreeValue', $event.target.value)"
+    >
+      <option :value="1">-5</option>
+      <option :value="2">-4</option>
+      <option :value="4">-3</option>
+      <option :value="5">-2</option>
+      <option :value="6">-1</option>
+      <option :value="7" selected>0</option>
+      <option :value="8">1</option>
+      <option :value="9">2</option>
+      <option :value="10">3</option>
+      <option :value="11">4</option>
+    </select>
+    <label for="ClaimFree">Claimvrije jaren</label>
   </div>
-  <!-- End LicensePlate -->
+  <!-- End ClaimFree years -->
 </template>
 
 <script lang="ts">
@@ -26,11 +33,11 @@ import { Options, Vue } from "vue-class-component";
     ErrorMessage,
   },
 })
-export default class InputLicence extends Vue {
-  public licenselValue!: string;
+export default class SelectClaimFree extends Vue {
+  // public claimFreeValue!: string;
 
   created(): void {
-    console.log("Component ImputLicence created");
+    console.log("Component SelectClaimFree created");
   }
 
   validateLicence(value: string): any {

@@ -3,15 +3,15 @@
     <Field
       type="text"
       class="form-control"
-      id="Zipcode"
-      placeholder="Postcode"
-      name="Zipcode"
-      :rules="validateZipCode"
-      :value="postCodeValue"
-      @input="$emit('update:postCodeValue', $event.target.value)"
+      id="HouseAdd"
+      placeholder="Toevoeging huisnummer"
+      name="HouseAdd"
+      :rules="validateHouseAdd"
+      :value="houseAddValue"
+      @input="$emit('update:houseAddValue', $event.target.value)"
     />
-    <ErrorMessage class="alert alert-warning py-0 my-5" role="alert" name="Zipcode" />
-    <label for="Postcode">Postcode</label>
+    <ErrorMessage class="alert alert-warning py-0 my-5" role="alert" name="HouseAdd" />
+    <label for="HouseAdd">Toevoeging huisnummer</label>
   </div>
   <!-- End LicensePlate -->
 </template>
@@ -26,20 +26,20 @@ import { Options, Vue } from "vue-class-component";
     ErrorMessage,
   },
 })
-export default class InputPostCode extends Vue {
-  public postCodeValue!: string;
+export default class InputHouseAdd extends Vue {
+  public houseAddValue!: string;
 
   created(): void {
-    console.log("Component PostCodeImput created");
+    console.log("Component InputHouseAdd created");
   }
 
-  validateZipCode(value: string): any {
+  validateHouseAdd(value: string): any {
     // if the field is empty
     if (!value) {
       return "This field is required";
     }
     // if the field is not a valid email
-    const regex = /^[A-Z][A-Z][A-Z][A-Z]\d\d*$/;
+    const regex = /^[A-Z0-9]*$/;
     if (!regex.test(value)) {
       return "This field must be a valid format";
     }
