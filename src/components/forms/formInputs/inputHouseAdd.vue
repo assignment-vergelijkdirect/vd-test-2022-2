@@ -7,8 +7,7 @@
       placeholder="Toevoeging huisnummer"
       name="HouseAdd"
       :rules="validateHouseAdd"
-      :value="houseAddValue"
-      @input="$emit('update:houseAddValue', $event.target.value)"
+      @input="$emit('update:modelValue', $event.target.value)"
     />
     <ErrorMessage class="alert alert-warning py-0 my-5" role="alert" name="HouseAdd" />
     <label for="HouseAdd">Toevoeging huisnummer</label>
@@ -27,8 +26,6 @@ import { Options, Vue } from "vue-class-component";
   },
 })
 export default class InputHouseAdd extends Vue {
-  public houseAddValue!: string;
-
   created(): void {
     console.log("Component InputHouseAdd created");
   }

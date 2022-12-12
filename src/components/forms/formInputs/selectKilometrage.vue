@@ -15,7 +15,7 @@
       class="form-select"
       id="Kilometrage"
       aria-label="Default select example"
-      @option="$emit('update:claimFreeValue', $event.target.value)"
+      @option="$emit('update:modelValue', $event.target.value)"
     >
       <option :value="1">0 t/m 7500 KM</option>
       <option :value="2" selected>7501 t/m 10000 KM</option>

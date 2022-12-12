@@ -64,8 +64,6 @@ import SelectKilometrage from "./formInputs/selectKilometrage.vue";
     SelectKilometrage,
     SimpleCard,
     Form,
-    Field,
-    ErrorMessage,
   },
 })
 export default class CarForm extends Vue {

@@ -9,7 +9,7 @@ export default class CarDetails {
 
   birthdate?: Date;
 
-  claimFree?: Date;
+  claimFree?: string;
 
   kilometrage?: string;
 

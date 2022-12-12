@@ -7,8 +7,7 @@
       placeholder="Postcode"
       name="Zipcode"
       :rules="validateZipCode"
-      :value="postCodeValue"
-      @input="$emit('update:postCodeValue', $event.target.value)"
+      @input="$emit('update:modelValue', $event.target.value)"
     />
     <ErrorMessage class="alert alert-warning py-0 my-5" role="alert" name="Zipcode" />
     <label for="Postcode">Postcode</label>
@@ -27,8 +26,6 @@ import { Options, Vue } from "vue-class-component";
   },
 })
 export default class InputPostCode extends Vue {
-  public postCodeValue!: string;
-
   created(): void {
     console.log("Component InputPostCode created");
   }

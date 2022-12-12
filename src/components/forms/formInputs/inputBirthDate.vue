@@ -7,8 +7,7 @@
       placeholder="Geboortedatum"
       name="birthdate"
       :rules="validatebirthDate"
-      :value="birthDateValue"
-      @input="$emit('update:birthDateValue', $event.target.value)"
+      @input="$emit('update:modelValue', $event.target.value)"
     />
     <ErrorMessage class="alert alert-warning py-0 my-5" role="alert" name="birthdate" />
 
@@ -28,8 +27,6 @@ import { Options, Vue } from "vue-class-component";
   },
 })
 export default class InputBirthDate extends Vue {
-  public birthDateValue!: string;
-
   created(): void {
     console.log("Component InputBirthDate created");
     // this.age("08-09-1980");

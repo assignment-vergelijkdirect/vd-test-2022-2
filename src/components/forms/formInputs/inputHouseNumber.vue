@@ -7,8 +7,8 @@
       placeholder="Huisnummer"
       name="Housenumber"
       :rules="validateHouseNumber"
-      :value="houseNumberValue"
-      @input="$emit('update:houseNumberValue', $event.target.value)"
+      
+      @input="$emit('update:modelValue', $event.target.value)"
     />
     <ErrorMessage class="alert alert-warning py-0 my-5" role="alert" name="Housenumber" />
 
@@ -28,7 +28,7 @@ import { Options, Vue } from "vue-class-component";
   },
 })
 export default class InputHouseNumber extends Vue {
-  public houseNumberValue!: string;
+  
 
   created(): void {
     console.log("Component InputHouseNumber created");

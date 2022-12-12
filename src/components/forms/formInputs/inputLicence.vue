@@ -7,8 +7,7 @@
       placeholder="Nummerplaat"
       name="LicensePlate"
       :rules="validateLicence"
-      :value="licenseValue"
-      @input="$emit('update:licenseValue', $event.target.value)"
+      @input="$emit('update:modelValue', $event.target.value)"
     />
     <ErrorMessage class="alert alert-warning py-0 my-5" role="alert" name="LicensePlate" />
     <label for="LicensePlate">Nummerplaat</label>
@@ -27,10 +26,8 @@ import { Options, Vue } from "vue-class-component";
   },
 })
 export default class InputLicence extends Vue {
-  public licenseValue!: string;
-
   created(): void {
-    console.log("Component ImputLicence created");
+    console.log("Component InputLicence created");
   }
 
   validateLicence(value: string): any {

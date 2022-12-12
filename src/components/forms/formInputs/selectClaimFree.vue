@@ -5,7 +5,7 @@
       class="form-select"
       id="ClaimFree"
       aria-label="Default select example"
-      @option="$emit('update:claimFreeValue', $event.target.value)"
+      @option="$emit('update:modelValue', $event.target.value)"
     >
       <option :value="1">-5</option>
       <option :value="2">-4</option>
