@@ -40,7 +40,7 @@
 </template>
 
 <script lang="ts">
-import { Form, Field, ErrorMessage } from "vee-validate";
+import { Form } from "vee-validate";
 import CarDetails from "@/models/carDetails.model";
 import { Options, Vue } from "vue-class-component";
 import HttpRequest from "@/plugin/services/httpRequest";

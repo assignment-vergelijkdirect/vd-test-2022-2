@@ -27,6 +27,7 @@ import { Options, Vue } from "vue-class-component";
   },
 })
 export default class InputBirthDate extends Vue {
+  public birthDate!: Date;
   created(): void {
     console.log("Component InputBirthDate created");
     // this.age("08-09-1980");
@@ -55,7 +56,7 @@ export default class InputBirthDate extends Vue {
     const birthDate: Date = new Date(date);
     const difference: number = <any>currentDate - <any>birthDate;
     const age = Math.floor(difference / 31557600000);
-    console.log(age);
+    this.birthDate = birthDate;
     return age;
   }
 }
