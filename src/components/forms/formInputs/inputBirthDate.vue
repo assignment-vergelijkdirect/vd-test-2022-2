@@ -57,6 +57,7 @@ export default class InputBirthDate extends Vue {
     const difference: number = <any>currentDate - <any>birthDate;
     const age = Math.floor(difference / 31557600000);
     this.birthDate = birthDate;
+    console.log(birthDate);
     return age;
   }
 }

@@ -22,11 +22,11 @@
         <!-- End Housenumber addition -->
 
         <!-- birthdate -->
-        <input-birth-date v-model="carDetails.birthdate" />
+        <input-birth-date v-model="carDetails.birthdate" @change="birthDateChanged" />
         <!-- End birthdate -->
 
         <!-- ClaimFree years -->
-        <select-claim-free v-model="carDetails.claimFree" />
+        <select-claim-free v-model="carDetails.claimFree" ref="claimFreeComponent" />
         <!-- End ClaimFree years -->
 
         <!-- Kilometrage -->
@@ -70,6 +70,14 @@ export default class CarForm extends Vue {
   public carDetails!: CarDetails;
 
   public httpRequest: HttpRequest = new HttpRequest();
+
+  birthDateChanged() {
+    console.log(`Date of birth changed to ${this.carDetails.birthdate}`);
+    let claimFreeComponentRef = <SelectClaimFree>this.$refs.claimFreeComponent;
+
+    claimFreeComponentRef.updating(this.carDetails.birthdate);
+    console.log(claimFreeComponentRef);
+  }
 
   created(): void {
     console.log("Component car form created");
