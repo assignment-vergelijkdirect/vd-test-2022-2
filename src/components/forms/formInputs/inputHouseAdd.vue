@@ -38,7 +38,10 @@ export default class InputHouseAdd extends Vue {
     // if the field is not a valid email
     const regex = /^[A-Z0-9]*$/;
     if (!regex.test(value)) {
-      return "This field must be a valid format";
+      return "This field only allows numbers and/or capital letters.";
+    }
+    if (value.length !== 6) {
+      return "This field must have 6 digits.";
     }
     // All is good
     return true;
