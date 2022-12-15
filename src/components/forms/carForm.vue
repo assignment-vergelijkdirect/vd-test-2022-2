@@ -76,7 +76,7 @@ export default class CarForm extends Vue {
     let claimFreeComponentRef = <SelectClaimFree>this.$refs.claimFreeComponent;
 
     claimFreeComponentRef.updating(this.carDetails.birthdate);
-    console.log(claimFreeComponentRef);
+    // console.log(claimFreeComponentRef);
   }
 
   created(): void {

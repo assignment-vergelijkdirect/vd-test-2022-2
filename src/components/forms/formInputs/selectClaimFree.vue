@@ -60,8 +60,10 @@ export default class SelectClaimFree extends Vue {
     if (this.bdValue) {
       const range: number = this.climeFreeYears();
       // eslint-disable-next-line no-plusplus
-      for (let i = 0; i < range; i++) {
-        this.options.push({ id: (i + 6).toString(), value: i + 1, text: (i + 1).toString() });
+      if (range > 0) {
+        for (let i = 0; i < range; i++) {
+          this.options.push({ id: (i + 6).toString(), value: i + 1, text: (i + 1).toString() });
+        }
       }
     } else {
       console.log(this.bdValue);
@@ -73,7 +75,7 @@ export default class SelectClaimFree extends Vue {
     const birthYear: number = new Date(this.bdValue).getFullYear();
     const difference: number = currentYear - birthYear;
     const cfy = difference - 18;
-    console.log(cfy);
+    // console.log(cfy);
     return cfy;
   }
 }
