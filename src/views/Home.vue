@@ -1,16 +1,17 @@
 <template>
   <div class="card">
-    <div class="card-body text-center">
-      <h4>HOME</h4>
-      <div>🐾</div>
-      <span> Use the nav menu above to find new facts! </span>
-    </div>
+    <car-form />
   </div>
 </template>
 <script lang="ts">
 import { Options, Vue } from "vue-class-component";
+import CarForm from "@/components/forms/carForm.vue";
 
-@Options({})
+@Options({
+  components: {
+    CarForm,
+  },
+})
 export default class Home extends Vue {}
 </script>
 <style scoped></style>

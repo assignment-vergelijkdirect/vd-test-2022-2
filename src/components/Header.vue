@@ -9,10 +9,12 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { Options, Vue } from "vue-class-component";
 import HeaderLink from "./HeaderLink.vue";
-
-export default defineComponent({
-  components: { HeaderLink },
-});
+@Options({
+  components: {
+    HeaderLink,
+  },
+})
+export default class Results extends Vue {}
 </script>
