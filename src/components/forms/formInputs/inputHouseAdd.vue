@@ -40,9 +40,9 @@ export default class InputHouseAdd extends Vue {
     if (!regex.test(value)) {
       return "This field only allows numbers and/or capital letters.";
     }
-    if (value.length !== 6) {
-      return "This field must have 6 digits.";
-    }
+    // if (value.length !== 6) {
+    //   return "This field must have 6 digits.";
+    // }
     // All is good
     return true;
   }
