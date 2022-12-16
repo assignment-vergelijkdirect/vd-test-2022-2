@@ -1,7 +1,8 @@
 <template>
-  <div class="card">
+  <div class="container">
+    <h1 class="h1 text-center my-4">REPORT</h1>
     <form>
-      <div class="form-row">
+      <div class="row">
         <div class="form-group col-md-6">
           <label for="inputEmail4">Email</label>
           <input type="email" class="form-control" id="inputEmail4" placeholder="Email" />
