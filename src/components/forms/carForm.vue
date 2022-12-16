@@ -1,39 +1,43 @@
 <template>
-  <simple-card class="card vd-form">
+  <simple-card class="card mt-3 vd-form">
     <template #title>Autoverzekering vergelijken</template>
 
     <template #content>
-      <Form @submit="onSubmit">
-        <p>Replace me for Field fields</p>
-        <!-- LicensePlate -->
-        <input-licence v-model="carDetails.licenseplate" />
-        <!-- End LicensePlate -->
+      <Form as="div" @submit="onSubmit">
+        <form action="/results" method="get">
+          <p>Replace me for Field fields</p>
 
-        <!-- Zipcode -->
-        <input-post-code v-model="carDetails.zipcode" />
-        <!-- End Zipcode -->
+          <!-- LicensePlate -->
+          <input-licence v-model="carDetails.licenseplate" />
+          <!-- End LicensePlate -->
 
-        <!-- Housenumber -->
-        <input-house-number v-model="carDetails.housenumber" />
-        <!-- End Housenumber -->
+          <!-- Zipcode -->
+          <input-post-code v-model="carDetails.zipcode" />
+          <!-- End Zipcode -->
 
-        <!-- Housenumber addition -->
-        <input-house-add v-model="carDetails.houseAdd" />
-        <!-- End Housenumber addition -->
+          <!-- Housenumber -->
+          <input-house-number v-model="carDetails.housenumber" />
+          <!-- End Housenumber -->
 
-        <!-- birthdate -->
-        <input-birth-date v-model="carDetails.birthdate" @change="birthDateChanged" />
-        <!-- End birthdate -->
+          <!-- Housenumber addition -->
+          <input-house-add v-model="carDetails.houseAdd" />
+          <!-- End Housenumber addition -->
 
-        <!-- ClaimFree years -->
-        <select-claim-free v-model="carDetails.claimFree" ref="claimFreeComponent" />
-        <!-- End ClaimFree years -->
+          <!-- birthdate -->
+          <input-birth-date v-model="carDetails.birthdate" @change="birthDateChanged" />
+          <!-- End birthdate -->
 
-        <!-- Kilometrage -->
-        <select-kilometrage v-model="carDetails.kilometrage" />
-        <!-- Kilometrage -->
+          <!-- ClaimFree years -->
+          <select-claim-free v-model="carDetails.claimFree" ref="claimFreeComponent" />
+          <!-- End ClaimFree years -->
 
-        <button type="button" class="btn" @click="onSubmit">Vergelijken</button>
+          <!-- Kilometrage -->
+          <select-kilometrage v-model="carDetails.kilometrage" />
+          <!-- Kilometrage -->
+
+          <button type="submit" class="btn me-2">Vergelijken</button>
+          <button type="reset" class="btn">Reset</button>
+        </form>
       </Form>
     </template>
   </simple-card>
@@ -43,6 +47,7 @@
 import { Form } from "vee-validate";
 import CarDetails from "@/models/carDetails.model";
 import { Options, Vue } from "vue-class-component";
+import router from "@/router";
 import HttpRequest from "@/plugin/services/httpRequest";
 import SimpleCard from "./simpleCard.vue";
 import InputLicence from "./formInputs/inputLicence.vue";
@@ -100,11 +105,27 @@ export default class CarForm extends Vue {
         const response = castToArray[0];
         this.carDetails.merk = response.merk;
         this.carDetails.datumEersteToelating = response.datum_eerste_toelating;
+
+        console.log(this.carDetails);
+
+        this.$router.push({
+          name: "Results",
+          query: {
+            LicensePlate: this.carDetails.licenseplate,
+            Zipcode: this.carDetails.zipcode,
+            Housenumber: this.carDetails.housenumber,
+            HouseAdd: this.carDetails.houseAdd,
+            birthdate: this.carDetails.birthdate?.toString(),
+            ClaimFree: this.carDetails.claimFree,
+            Kilometrage: this.carDetails.kilometrage,
+            Merk: this.carDetails.merk,
+            DatumEersteToelating: this.carDetails.datumEersteToelating,
+          },
+        });
       } else {
         alert("Invalid Licence Plate");
+        return;
       }
-
-      console.log(this.carDetails);
     });
   }
 }

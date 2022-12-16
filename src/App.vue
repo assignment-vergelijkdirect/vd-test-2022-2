@@ -1,19 +1,14 @@
 <template>
-  <Header />
-  <div>
-    <router-view />
-  </div>
+  <router-view />
 </template>
 
 <script lang="ts">
 import { Options, Vue } from "vue-class-component";
-import CarForm from "./components/forms/carForm.vue";
-import Header from "./components/Header.vue";
+import { RouterView } from "vue-router";
 
 @Options({
   components: {
-    Header,
-    CarForm,
+    RouterView,
   },
 })
 export default class App extends Vue {}

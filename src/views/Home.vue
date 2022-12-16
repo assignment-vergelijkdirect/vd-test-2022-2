@@ -1,7 +1,5 @@
 <template>
-  <div class="card">
-    <car-form />
-  </div>
+  <car-form />
 </template>
 <script lang="ts">
 import { Options, Vue } from "vue-class-component";
