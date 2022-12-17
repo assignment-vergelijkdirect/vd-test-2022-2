@@ -1,54 +1,97 @@
 <template>
   <div class="container">
-    <h1 class="h1 text-center my-4">REPORT</h1>
+    <h1 class="h1 text-center my-4">RAPPORT</h1>
     <form>
-      <div class="row">
-        <div class="form-group col-md-6">
-          <label for="inputEmail4">Email</label>
-          <input type="email" class="form-control" id="inputEmail4" placeholder="Email" />
+      <h2 class="h2 my-4">Auto Details</h2>
+      <div class="row mb-1">
+        <div class="col-md-6 form-floating">
+          <input
+            class="form-control mb-1"
+            id="licenseplate"
+            readonly
+            v-model="carDetailsResults.licenseplate"
+          />
+          <label for="licenseplate">Nummerplaat</label>
         </div>
-        <div class="form-group col-md-6">
-          <label for="inputPassword4">Password</label>
-          <input type="password" class="form-control" id="inputPassword4" placeholder="Password" />
-        </div>
-      </div>
-      <div class="form-group">
-        <label for="inputAddress">Address</label>
-        <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St" />
-      </div>
-      <div class="form-group">
-        <label for="inputAddress2">Address 2</label>
-        <input
-          type="text"
-          class="form-control"
-          id="inputAddress2"
-          placeholder="Apartment, studio, or floor"
-        />
-      </div>
-      <div class="form-row">
-        <div class="form-group col-md-6">
-          <label for="inputCity">City</label>
-          <input type="text" class="form-control" id="inputCity" />
-        </div>
-        <div class="form-group col-md-4">
-          <label for="inputState">State</label>
-          <select id="inputState" class="form-control">
-            <option selected>Choose...</option>
-            <option>...</option>
-          </select>
-        </div>
-        <div class="form-group col-md-2">
-          <label for="inputZip">Zip</label>
-          <input type="text" class="form-control" id="inputZip" />
+        <div class="col-md-6 form-floating">
+          <input class="form-control mb-1" id="merk" readonly v-model="carDetailsResults.merk" />
+          <label for="merk">Merk</label>
         </div>
       </div>
-      <div class="form-group">
-        <div class="form-check">
-          <input class="form-check-input" type="checkbox" id="gridCheck" />
-          <label class="form-check-label" for="gridCheck"> Check me out </label>
+      <div class="row mb-1">
+        <div class="col-md-6 form-floating">
+          <input
+            class="form-control mb-1"
+            id="DatumEersteToelating"
+            readonly
+            v-model="carDetailsResults.datumEersteToelating"
+          />
+          <label for="DatumEersteToelating">Datum Eerste Toelating</label>
+        </div>
+        <div class="col-md-6 form-floating">
+          <input
+            class="form-control mb-1"
+            id="Kilometrage"
+            readonly
+            v-model="carDetailsResults.kilometrage"
+          />
+          <label for="Kilometrage">Kilometrage</label>
         </div>
       </div>
-      <button type="submit" class="btn btn-primary">Sign in</button>
+      <h2 class="h2 my-4">Persoonlijke Gegevens</h2>
+      <div class="row mb-1">
+        <div class="col-md-4 form-floating">
+          <input
+            class="form-control mb-1"
+            id="Zipcode"
+            readonly
+            v-model="carDetailsResults.zipcode"
+          />
+          <label for="Zipcode">Postcode</label>
+        </div>
+        <div class="col-md-4 form-floating">
+          <input
+            class="form-control mb-1"
+            id="housenumber"
+            readonly
+            v-model="carDetailsResults.housenumber"
+          />
+          <label for="housenumber">Huisnummer</label>
+        </div>
+        <div class="col-md-4 form-floating">
+          <input
+            class="form-control mb-1"
+            id="claimFree"
+            readonly
+            v-model="carDetailsResults.houseAdd"
+          />
+          <label for="claimFree">Toevoeging housenumber</label>
+        </div>
+      </div>
+      <div class="row mb-3">
+        <div class="col-md-6 form-floating">
+          <input
+            class="form-control mb-1"
+            id="birthdate"
+            readonly
+            v-model="carDetailsResults.birthdate"
+          />
+          <label for="birthdate">Geboortedatum</label>
+        </div>
+        <div class="col-md-6 form-floating">
+          <input
+            class="form-control mb-1"
+            id="claimFree"
+            readonly
+            v-model="carDetailsResults.claimFree"
+          />
+          <label for="claimFree">Claimvrije jaren</label>
+        </div>
+      </div>
+
+      <router-link to="/" exact>
+        <button class="btn btn-primary">Terug naar de startpagina</button>
+      </router-link>
     </form>
   </div>
 </template>

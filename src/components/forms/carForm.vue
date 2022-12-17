@@ -57,6 +57,7 @@ import InputHouseAdd from "./formInputs/inputHouseAdd.vue";
 import InputBirthDate from "./formInputs/inputBirthDate.vue";
 import SelectClaimFree from "./formInputs/selectClaimFree.vue";
 import SelectKilometrage from "./formInputs/selectKilometrage.vue";
+import Converters from "@/plugin/services/converters";
 
 @Options({
   components: {
@@ -73,7 +74,7 @@ import SelectKilometrage from "./formInputs/selectKilometrage.vue";
 })
 export default class CarForm extends Vue {
   public carDetails!: CarDetails;
-
+  public converters: Converters = new Converters();
   public httpRequest: HttpRequest = new HttpRequest();
 
   birthDateChanged() {
@@ -106,6 +107,10 @@ export default class CarForm extends Vue {
         this.carDetails.merk = response.merk;
         this.carDetails.datumEersteToelating = response.datum_eerste_toelating;
 
+        this.carDetails.datumEersteToelating = this.converters.apiDateFormater(
+          response.datum_eerste_toelating
+        );
+
         console.log(this.carDetails);
 
         this.$router.push({
@@ -115,9 +120,9 @@ export default class CarForm extends Vue {
             Zipcode: this.carDetails.zipcode,
             Housenumber: this.carDetails.housenumber,
             HouseAdd: this.carDetails.houseAdd,
-            birthdate: this.carDetails.birthdate?.toString(),
+            birthdate: this.converters.localDateFormater(this.carDetails.birthdate),
             ClaimFree: this.carDetails.claimFree,
-            Kilometrage: this.carDetails.kilometrage,
+            Kilometrage: this.converters.kilometrageFormater(<any>this.carDetails.kilometrage),
             Merk: this.carDetails.merk,
             DatumEersteToelating: this.carDetails.datumEersteToelating,
           },
