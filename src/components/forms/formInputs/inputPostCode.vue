@@ -50,29 +50,4 @@ export default class InputPostCode extends Vue {
 }
 </script>
 
-<style scoped>
-.vd-form {
-  width: 70%;
-}
-
-@media only screen and (max-width: 768px) {
-  .vd-form {
-    width: 100%;
-  }
-}
-
-.btn {
-  background: #0cbe3b;
-  text-align: center;
-  padding: 10px 10px;
-  font-weight: 600;
-  color: white;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: 0.1s ease;
-}
-
-.btn:hover {
-  background: #0ed642;
-}
-</style>
+<style scoped></style>
