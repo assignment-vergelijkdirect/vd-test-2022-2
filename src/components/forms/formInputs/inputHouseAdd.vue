@@ -40,38 +40,13 @@ export default class InputHouseAdd extends Vue {
     if (!regex.test(value)) {
       return "This field only allows numbers and/or capital letters.";
     }
-    if (value.length !== 6) {
-      return "This field must have 6 digits.";
-    }
+    // if (value.length !== 6) {
+    //   return "This field must have 6 digits.";
+    // }
     // All is good
     return true;
   }
 }
 </script>
 
-<style scoped>
-.vd-form {
-  width: 70%;
-}
-
-@media only screen and (max-width: 768px) {
-  .vd-form {
-    width: 100%;
-  }
-}
-
-.btn {
-  background: #0cbe3b;
-  text-align: center;
-  padding: 10px 10px;
-  font-weight: 600;
-  color: white;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: 0.1s ease;
-}
-
-.btn:hover {
-  background: #0ed642;
-}
-</style>
+<style scoped></style>

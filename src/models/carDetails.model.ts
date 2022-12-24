@@ -7,11 +7,11 @@ export default class CarDetails {
 
   houseAdd?: string;
 
-  birthdate?: Date;
+  birthdate?: Date | string | any;
 
-  claimFree?: string;
+  claimFree?: string = "0";
 
-  kilometrage?: string;
+  kilometrage?: string = "2";
 
   merk?: string;
 

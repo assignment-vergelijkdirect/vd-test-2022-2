@@ -19,6 +19,7 @@
 <script lang="ts">
 import { Field, ErrorMessage } from "vee-validate";
 import { Options, Vue } from "vue-class-component";
+import HttpRequest from "@/plugin/services/httpRequest";
 
 @Options({
   components: {
@@ -27,6 +28,9 @@ import { Options, Vue } from "vue-class-component";
   },
 })
 export default class InputLicence extends Vue {
+  public validLicence!: boolean;
+  public httpRequest: HttpRequest = new HttpRequest();
+
   created(): void {
     console.log("Component InputLicence created");
   }
@@ -36,13 +40,29 @@ export default class InputLicence extends Vue {
     if (!value) {
       return "This field is required";
     }
-    // if the field is not a valid email
+    // if the field is not a valid format
     const regex = /^[A-Z0-9]*$/;
     if (!regex.test(value)) {
       return "This field only allows numbers and/or capital letters.";
     }
     if (value.length !== 6) {
       return "This field must have 6 digits.";
+    } else {
+      // if the licence is invalid
+      const licencePlate = this.httpRequest.getCars(value).then((data) => {
+        let castToArray = <Array<any>>data;
+        console.log(castToArray);
+        if (castToArray.length === 0 || castToArray === null) {
+          this.validLicence = false;
+        } else {
+          this.validLicence = true;
+        }
+        console.log(this.validLicence);
+      });
+      console.log("Licence plate validvalidation = " + licencePlate);
+    }
+    if (this.validLicence === false) {
+      return "This licence is invalid. Check your typing and try again.";
     }
     // All is good
     return true;
@@ -50,29 +70,4 @@ export default class InputLicence extends Vue {
 }
 </script>
 
-<style scoped>
-.vd-form {
-  width: 70%;
-}
-
-@media only screen and (max-width: 768px) {
-  .vd-form {
-    width: 100%;
-  }
-}
-
-.btn {
-  background: #0cbe3b;
-  text-align: center;
-  padding: 10px 10px;
-  font-weight: 600;
-  color: white;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: 0.1s ease;
-}
-
-.btn:hover {
-  background: #0ed642;
-}
-</style>
+<style scoped></style>
